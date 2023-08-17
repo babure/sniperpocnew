@@ -11,3 +11,19 @@ body {
 .nav-menu.active ~ .blur-content {
   filter: blur(1px); /* Adjust the blur intensity as needed */
 }
+
+.scroll-container {
+  max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}

@@ -1,5 +1,10 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import axios from "axios";
 
-export default function IncidentPage() {
-  return <div className="text-center">IncidentPage</div>;
+export default function IncidentPage({ startTime, endTime }) {
+  return (
+    <>
+      <div className="my-3"></div>
+    </>
+  );
 }

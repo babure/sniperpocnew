@@ -1,44 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Table, Pagination } from "rsuite";
-import axios from "axios";
 import "./TableComponent.css";
 import { Progress } from "rsuite";
 
 const { Column, HeaderCell, Cell } = Table;
 
-const MyTableComponent = ({ startTime, endTime }) => {
-  const [tableData, setTableData] = useState([]);
-  const [sortColumn, setSortColumn] = React.useState();
-  const [sortType, setSortType] = React.useState();
-  const [loading, setLoading] = React.useState(false);
-  const [page, setPage] = React.useState(1);
-  const [limit, setLimit] = React.useState(4);
-
-  const fetchDataFromAPI = async () => {
-    try {
-      const response = await axios.post("http://localhost:8000/serverTable/", {
-        service_names: [
-          "metricbeat-snipermysql",
-          "collectD-avekshaaserver4-B550M-DS3H",
-          "metricbeat-sniperapi",
-          "metricbeat-avekshaahpc2-System-Product-Name",
-        ],
-        start_time: startTime,
-        end_time: endTime,
-      });
-      return response.data.data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return [];
-    }
-  };
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetchDataFromAPI();
-      setTableData(data);
-    };
-    getData();
-  }, [startTime, endTime]);
+const MyTableComponent = ({ tableData }) => {
+  const [sortColumn, setSortColumn] = useState();
+  const [sortType, setSortType] = useState();
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(4);
 
   const getData = () => {
     if (sortColumn && sortType) {
@@ -74,11 +46,13 @@ const MyTableComponent = ({ startTime, endTime }) => {
     setPage(1);
     setLimit(dataKey);
   };
-
   const CompactCell = (props) => <Cell {...props} style={{ padding: 6 }} />;
-  const CompactHeaderCell = (props) => (
-    <HeaderCell {...props} style={{ fontSize: 18 }} />
+  const ProgressBarCell = ({ rowData, dataKey, ...props }) => (
+    <Cell {...props} style={{ padding: 6 }}>
+      <Progress.Line percent={rowData[dataKey]} strokeColor="#ffc107" />
+    </Cell>
   );
+  const CompactHeaderCell = (props) => <HeaderCell {...props} />;
 
   return (
     <div style={{ width: "100%" }}>
@@ -90,38 +64,35 @@ const MyTableComponent = ({ startTime, endTime }) => {
         onSortColumn={handleSortColumn}
         loading={loading}
         bordered
-        width={"100%"}
-        style={{ fontSize: 16 }}
+        style={{ width: "100%" }}
       >
-        <Column sortable fullText resizable width={350}>
+        <Column sortable fullText resizable width={290}>
           <CompactHeaderCell>Server Name</CompactHeaderCell>
           <CompactCell dataKey="serverName" />
         </Column>
-        <Column sortable fullText width={150}>
+        <Column sortable fullText flex={1}>
           <CompactHeaderCell>Raw Alerts</CompactHeaderCell>
           <CompactCell dataKey="rawAlerts" />
         </Column>
 
-        <Column sortable fullText width={150}>
+        <Column sortable fullText flex={1}>
           <CompactHeaderCell>Incidents</CompactHeaderCell>
           <CompactCell dataKey="incidents" />
         </Column>
 
-        <Column sortable fullText width={150}>
+        <Column sortable fullText flex={1}>
           <CompactHeaderCell>Critical</CompactHeaderCell>
           <CompactCell dataKey="critical" />
         </Column>
 
-        <Column sortable fullText width={150}>
+        <Column sortable fullText flex={1}>
           <CompactHeaderCell>Warning</CompactHeaderCell>
           <CompactCell dataKey="warning" />
         </Column>
 
-        <Column sortable fullText width={150}>
+        <Column sortable fullText width={130}>
           <CompactHeaderCell>CR Rate</CompactHeaderCell>
-          <CompactCell dataKey="crRate">
-            <Progress.Line percent={30} strokeColor="#ffc107" />
-          </CompactCell>
+          <ProgressBarCell dataKey="crRate" />
         </Column>
       </Table>
 

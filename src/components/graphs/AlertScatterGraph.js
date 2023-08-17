@@ -57,12 +57,11 @@ export default function ApexChart({ startTime, endTime }) {
         },
       },
       legend: {
+        type: "scroll",
         data: seriesData.map((item) => item.name),
       },
       toolbox: {
-        feature: {
-          saveAsImage: {},
-        },
+        feature: {},
       },
       grid: {
         left: "3%",

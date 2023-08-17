@@ -1,7 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
-const FunnelChart = () => {
+export default function FunnelChart({
+  normalizeValue,
+  totalAlerts,
+  totalIncidents,
+}) {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -17,11 +21,10 @@ const FunnelChart = () => {
         formatter: "{b} : {c}",
       },
       toolbox: {
-        feature: {
-          saveAsImage: {},
-        },
+        feature: {},
       },
       legend: {
+        type: "scroll",
         data: ["Alerts", "Incidents", "Normalization"],
       },
       series: [
@@ -59,9 +62,9 @@ const FunnelChart = () => {
             },
           },
           data: [
-            { value: 60, name: "Alerts" },
-            { value: 40, name: "Normalization" },
-            { value: 20, name: "Incidents" },
+            { value: totalAlerts, name: "Alerts" },
+            { value: normalizeValue, name: "Normalization" },
+            { value: totalIncidents, name: "Incidents" },
           ],
         },
       ],
@@ -75,6 +78,4 @@ const FunnelChart = () => {
   }, []);
 
   return <div ref={chartRef} style={{ width: "100%", height: "400px" }}></div>;
-};
-
-export default FunnelChart;
+}

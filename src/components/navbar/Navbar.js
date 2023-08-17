@@ -22,7 +22,6 @@ export default function Navbar({ startTime, endTime, handleDateChange }) {
 
   const handleItemClick = (index) => {
     setActiveItem(index);
-    console.log(index);
     showSidebar();
   };
 

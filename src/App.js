@@ -45,54 +45,102 @@ export default function App() {
           <Routes>
             <Route
               index
-              element={<ItopsPage startTime={startTime} endTime={endTime} />}
+              element={
+                <ItopsPage
+                  startTime={startTime.getTime()}
+                  endTime={endTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/incidents"
-              element={<IncidentPage startTime={startTime} endTime={endTime} />}
+              element={
+                <IncidentPage
+                  startTime={startTime.getTime()}
+                  endTime={endTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/metrics"
-              element={<MetricsPage startTime={startTime} endTime={endTime} />}
+              element={
+                <MetricsPage
+                  startTime={startTime.getTime()}
+                  endTime={endTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/observability"
               element={
-                <ObservabilityPage startTime={startTime} endTime={endTime} />
+                <ObservabilityPage
+                  startTime={startTime.getTime()}
+                  endTime={endTime.getTime()}
+                />
               }
             />
             <Route
               exact
               path="/pattern"
-              element={<PatternPage startTime={startTime} endTime={endTime} />}
+              element={
+                <PatternPage
+                  startTime={startTime.getTime()}
+                  endTime={endTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/prca"
-              element={<PrcaPage startTime={startTime} endTime={endTime} />}
+              element={
+                <PrcaPage
+                  startTime={startTime.getTime()}
+                  endTime={startTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/profile"
-              element={<ProfilePage startTime={startTime} endTime={endTime} />}
+              element={
+                <ProfilePage
+                  startTime={startTime.getTime()}
+                  endTime={startTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/reports"
-              element={<ReportsPage startTime={startTime} endTime={endTime} />}
+              element={
+                <ReportsPage
+                  startTime={startTime.getTime()}
+                  endTime={startTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/settings"
-              element={<SettingsPage startTime={startTime} endTime={endTime} />}
+              element={
+                <SettingsPage
+                  startTime={startTime.getTime()}
+                  endTime={startTime.getTime()}
+                />
+              }
             />
             <Route
               exact
               path="/tickets"
-              element={<TicketsPage startTime={startTime} endTime={endTime} />}
+              element={
+                <TicketsPage
+                  startTime={startTime.getTime()}
+                  endTime={startTime.getTime()}
+                />
+              }
             />
           </Routes>
         </div>
