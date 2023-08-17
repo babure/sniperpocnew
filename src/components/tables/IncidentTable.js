@@ -450,7 +450,7 @@ export default function App({ parentIncidentData, startTime, endTime }) {
       {showAlerts && checkedKeys.length !== 0 && (
         <>
           <div className="mt-3">
-            <span>Alert Distributions</span>
+            <span>Alert Distribution</span>
             <AlertDistribution
               startTime={startTime}
               endTime={endTime}
