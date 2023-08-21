@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingChart from "../utils/LoadingChart";
 import * as echarts from "echarts";
+import SunburstChart from "./SunburstChart";
 
 export default function RootCauseAnalysisGraph({ startTime, endTime }) {
   const [data, setData] = useState(null);
@@ -25,7 +26,8 @@ export default function RootCauseAnalysisGraph({ startTime, endTime }) {
 
   return (
     <div>
-      <LoadingChart />
+      {/* <LoadingChart /> */}
+      <SunburstChart />
     </div>
   );
 }

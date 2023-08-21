@@ -6,6 +6,7 @@ import axios from "axios";
 import IncidentTable from "../components/tables/IncidentTable";
 import AlertAnalyticsComponent from "../components/AlertAnalyticsComponent";
 import RootCauseAnalysisGraph from "../components/graphs/RootCauseAnalysisGraph";
+import ColumnGraph from "../components/graphs/ColumnGraph";
 
 export default function ItopsPage({ startTime, endTime }) {
   const [totalAlerts, setTotalAlerts] = useState(null);
@@ -105,8 +106,16 @@ export default function ItopsPage({ startTime, endTime }) {
         </div>
       </div>
       <div className="my-3">
-        <span>Root Cause Analysis</span>
-        <RootCauseAnalysisGraph startTime={startTime} endTime={endTime} />
+        <div className="row my-3">
+          <div className="col-md-6">
+            <span>Root Cause Analysis</span>
+            <RootCauseAnalysisGraph startTime={startTime} endTime={endTime} />
+          </div>
+          <div className="col-md-6">
+            <span>Server Alert clustering</span>
+            <ColumnGraph />
+          </div>
+        </div>
       </div>
       <div className="my-3">
         <span>Incident Table</span>
