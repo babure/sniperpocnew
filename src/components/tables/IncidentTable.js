@@ -12,6 +12,8 @@ import { ExpandOutline, CollaspedOutline } from "@rsuite/icons";
 import ModalComponent from "../IncidentModal";
 import AlertDistribution from "../graphs/AlertDistributionChart";
 import HeatChart from "../graphs/HeatChart";
+import ScatterChart from "../graphs/ScatterChart";
+import LineChart from "../graphs/LineChart";
 
 export default function App({ parentIncidentData, startTime, endTime }) {
   const [expandedRowKeys, setExpandedRowKeys] = useState([]);
@@ -456,6 +458,16 @@ export default function App({ parentIncidentData, startTime, endTime }) {
               endTime={endTime}
               rowData={checkedKeys}
             />
+          </div>
+          <div className="row mt-3">
+            <div className="col-md-6">
+              <span>Alert Cluster</span>
+              <ScatterChart />
+            </div>
+            <div className="col-md-6">
+              <span>Column graph</span>
+              <LineChart />
+            </div>
           </div>
           <div className="mt-3">
             <span>Heat Chart</span>

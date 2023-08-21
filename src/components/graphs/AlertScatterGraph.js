@@ -112,7 +112,6 @@ export default function ApexChart({ startTime, endTime }) {
 
     option && myChart.setOption(option);
 
-    // Clean up the chart instance when the component unmounts
     return () => {
       myChart.dispose();
     };
